@@ -40,6 +40,15 @@
             </filterset>
             <globmapper from="*.tmpl" to="*"/>
         </copy>
+        <condition property="twitter-secrets-module-available" value="yes" else="no">
+            <available file="modules/twitter-secrets.xqm"/>
+        </condition>
+        <echo message="Twitter secrets available: ${twitter-secrets-module-available}. An empty module will only be generated if needed."/>
+        <copy todir="${build.dir}/${app.name}/modules" overwrite="false" verbose="true">
+            <fileset file="modules/twitter-secrets.xqm.tmpl"/>
+            <globmapper from="*.tmpl" to="*"/>
+        </copy>        
+        <delete file="${build.dir}/${app.name}/modules/twitter-secrets.xqm.tmpl"/>
     </target>
     
     
